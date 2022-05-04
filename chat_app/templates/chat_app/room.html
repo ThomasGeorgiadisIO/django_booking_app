@@ -1,0 +1,44 @@
+{% load static %}
+
+
+{% block chatcontent %}
+<input type="checkbox" id="check">
+<label class="chat-btn" for="check">
+    <i class="fas fa-comment-dots"></i> <i class="fa fa-close close"></i>
+</label>
+<div class="wrapper">
+    <div class="chat-header">
+        <h6>E-Tours.gr - Chat</h6>
+    </div>
+    <div class="chat-form">
+        {% comment %} <form method="POST">
+            {% csrf_token %} {% endcomment %}
+            <textarea readonly class="form-control" id="msg-area" placeholder="Welcome to E-tours.gr chat {{ request.user.first_name }}!"></textarea>
+            <textarea class="form-control" id="msg-line" placeholder="Your Text Message"></textarea>
+            <button id='sendButton' class="btn btn-success btn-block float-end">Send</button>
+        {% comment %} </form> {% endcomment %}
+    </div>
+</div>
+<script>
+    var input = document.getElementById("msg-line");
+    input.addEventListener("keypress", function(event) {
+    if (event.key === "Enter") {
+        event.preventDefault();
+        document.getElementById("sendButton").click();
+    }
+    });
+
+    var textarea = document.getElementById("msg-area"),
+    mymsg = document.getElementById("msg-line"),
+    myBtn = document.getElementById("sendButton");
+    myBtn.addEventListener("click", function(){
+        var today = new Date();
+        var date = today.getDate() + '/' + (today.getMonth()+1) + '/' + today.getFullYear();
+        var time = today.getHours() + ":" + String(today.getMinutes()).padStart(2, "0") + ":" + today.getSeconds();
+        textarea.value += "{{ request.user.first_name }}: " + mymsg.value + '\r\n' + '[' + time + ' - ' + date +']' + '\r\n';
+        mymsg.value = "";
+        mymsg.focus();
+    }, false);
+</script>
+
+{% endblock %}

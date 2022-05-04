@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+<div class="jumbotron text-center mt-5">
+    <form method="post">{% csrf_token %}
+        <p>Are you sure you want to remove this experience from your wishlist?</p>
+        <br>
+        <button type="submit" class="btn btn-primary" value="Confirm"> Confirm </button>
+    </form>
+</div>
+
+{% endblock content %}

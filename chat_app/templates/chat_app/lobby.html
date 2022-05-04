@@ -1,0 +1,24 @@
+
+{% load static %}
+
+{% block lobbycontent %}
+
+<input type="checkbox" id="check">
+<label class="chat-btn" for="check">
+    <i class="fas fa-comment-dots"></i> <i class="fa fa-close close"></i>
+</label>
+<div class="wrapper">
+    <div class="chat-header">
+        <h6>E-Tours.gr - Chat</h6>
+    </div>
+    <div class="text-center p-2">
+        <span>Please login or sign-up to chat with us!</span>
+    </div>
+    <div class="chat-form text-center">
+        <a href="{% url 'signupUser' %}"><button class="btn btn-success btn-block">Sign up</button></a>
+        <a href="{% url 'loginUser' %}"><button class="btn btn-success btn-block ms-2">Login</button></a>
+    </div>
+</div>
+
+{% endblock %}
+

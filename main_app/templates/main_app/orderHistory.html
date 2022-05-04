@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load customFilters %}
+
+{% block content %}
+
+<div class="container-xxl py-5">
+    <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
+        <h6 class="section-title text-center text-dark ">{{ request.user.username }} <span class="text-primary text-uppercase">| Order History</span></h6>
+    </div>
+    <br>
+    {% if object_list %}
+    <table class="table table-striped table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>Experience</th>
+                <th>Customer Email</th>
+                <th>Amount</th>
+                <th>Status</th>
+                <th>Date</th>
+            </tr>
+        </thead>
+        
+        <tbody>
+            {% for item in object_list %}
+            {% if request.user.email == item.customer_email %}
+                <tr>
+                    <td>{{ item.tourExperience.tourTitle }}</td>
+                    <td>{{ item.customer_email }}</td>
+                    <td>{{ item.amount|makeInt|floatformat:2 }}</td>
+                    <td>
+                        {% if item.has_paid %}
+                            <b class="text-success">Success</b>
+                        {% else %}
+                            <b class="text-danger">Failed</b>
+                        {% endif %}
+                    </td>
+                    <td>{{ item.created_on }}</td>
+                </tr>
+            {% endif %}
+            {% endfor %} 
+        </tbody>
+    </table>
+
+    {% else %}
+    <div class="alert alert-info">
+        Payment history is empty.
+    </div>
+    {% endif %}
+        
+</div>
+{% endblock content %}

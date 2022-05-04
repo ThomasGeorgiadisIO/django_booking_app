@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container-xxl w-50 py-5">
+    <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
+        <h6 class="section-title text-center text-dark ">{{ request.user.username }} <span class="text-primary text-uppercase">| Update Experience</span></h6>
+    </div>
+    <br>
+    <form method="post" enctype="multipart/form-data">
+        {{ form.as_p }}
+        {% csrf_token %}
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary">Save</button>
+        </div>
+    </form>
+</div>
+<script>
+    document.querySelectorAll('input, textarea').forEach(e => {
+        e.classList.add('form-control');
+    })
+</script>
+{% endblock content %}

@@ -1,0 +1,202 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} About us {% endblock %}
+
+{% block content %}
+    <!-- Page Header Start -->
+    <div class="container-fluid page-header mb-5 p-0" style="background-image: url('../static/media/images/pexels-alex-azabache-3722809.jpg');">
+        <div class="container-fluid page-header-inner py-5"> 
+            <div class="container text-center pb-5">
+                <h1 class="display-3 text-white mb-3 animated slideInDown">About Us</h1>
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb justify-content-center text-uppercase">
+                        <li class="breadcrumb-item"><a href="{% url "homepage" %}">Home</a></li>
+                        <li class="breadcrumb-item text-white active" aria-current="page">About</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+    <!-- Page Header End -->
+
+    <!-- Team Start -->
+    <div class="container-xxl py-5">      
+        <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
+            <h6 class="section-title text-center text-primary text-uppercase">The Brains behind the idea</h6>
+            <h1 class="mb-5">Explore Our <span class="text-primary text-uppercase">Team</span></h1>
+        </div>
+        <div class="row g-4 d-flex justify-content-center">
+            <div class="col-lg-2 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                <div class="rounded shadow overflow-hidden">
+                    <div class="position-relative">
+                        <img class="img-fluid" src="{% static 'media/images/philippos_richter.jpg' %}" alt="Philippos Richter">
+                        <div class="position-absolute start-50 top-100 translate-middle d-flex align-items-center">
+                            <a class="btn btn-square btn-primary mx-1" href="https://www.linkedin.com/in/philippos-richter/" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                            <a class="btn btn-square btn-primary mx-1" href="https://github.com/rich-ter" target="_blank"><i class="fab fa-github"></i></a>
+                        </div>
+                    </div>
+                    <div class="text-center p-4 mt-3">
+                        <h5 class="fw-bold mb-0">Philippos J Richter</h5>
+                        <small>Team Coordinator</small>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
+                <div class="rounded shadow overflow-hidden">
+                    <div class="position-relative">
+                        <img class="img-fluid" src="{% static 'media/images/tom_georgiadis.jpg' %}" alt="">
+                        <div class="position-absolute start-50 top-100 translate-middle d-flex align-items-center">
+                            <a class="btn btn-square btn-primary mx-1" href="https://www.linkedin.com/in/thomas-georgiadis-io/" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                            <a class="btn btn-square btn-primary mx-1" href="https://github.com/ThomasGeorgiadisIO" target="_blank"><i class="fab fa-github"></i></a>
+                        </div>
+                    </div>
+                    <div class="text-center p-4 mt-3">
+                        <h5 class="fw-bold mb-0">Thomas Georgiadis</h5>
+                        <small>Scrum Master</small>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
+                <div class="rounded shadow overflow-hidden">
+                    <div class="position-relative">
+                        <img class="img-fluid" src="{% static 'media/images/anestis_pournis.jpg' %}" alt="">
+                        <div class="position-absolute start-50 top-100 translate-middle d-flex align-items-center">
+                            <a class="btn btn-square btn-primary mx-1" href="https://www.linkedin.com/in/anestis-pournis-967106210/" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                            <a class="btn btn-square btn-primary mx-1" href="https://github.com/anestisprn" target="_blank"><i class="fab fa-github"></i></a>
+                        </div>
+                    </div>
+                    <div class="text-center p-4 mt-3">
+                        <h5 class="fw-bold mb-0">Anestis Pournis</h5>
+                        <small>Tech Support Debugger</small>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-6 wow fadeInUp" data-wow-delay="0.7s">
+                <div class="rounded shadow overflow-hidden">
+                    <div class="position-relative">
+                        <img class="img-fluid" src="{% static 'media/images/teo_mgs.png' %}" alt="">
+                        <div class="position-absolute start-50 top-100 translate-middle d-flex align-items-center">
+                            <a class="btn btn-square btn-primary mx-1" href="https://www.linkedin.com/in/theodorosmaggas" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                            <a class="btn btn-square btn-primary mx-1" href="https://github.com/Teo-Mgs" target="_blank"><i class="fab fa-github"></i></a>
+                        </div>
+                    </div>
+                    <div class="text-center p-4 mt-3">
+                        <h5 class="fw-bold mb-0">Theodoros Mangas</h5>
+                        <small>Tech Support</small>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-6 wow fadeInUp" data-wow-delay="0.7s">
+                <div class="rounded shadow overflow-hidden">
+                    <div class="position-relative">
+                        <img class="img-fluid" src="{% static 'media/images/stefanos_dimitriou.jpg' %}" alt="">
+                        <div class="position-absolute start-50 top-100 translate-middle d-flex align-items-center">
+                            <a class="btn btn-square btn-primary mx-1" href="https://www.linkedin.com/in/stefanos-dimitriou-27a59922b/" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                            <a class="btn btn-square btn-primary mx-1" href="https://github.com/TheraOzz" target="_blank"><i class="fab fa-github"></i></a>
+                        </div>
+                    </div>
+                    <div class="text-center p-4 mt-3">
+                        <h5 class="fw-bold mb-0">Stefanos Dimitriou</h5>
+                        <small>Tech Lead</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Team End -->
+
+    <!-- BENEFITS FOR BOOKERS -->
+    <div class="container-xxl py-5">
+        <div class="container">
+            <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
+                <h6 class="section-title text-center text-primary text-uppercase">App features</h6>
+                <h1 class="mb-5">Explore the benefits <span class="text-primary text-uppercase"> For Bookers</span></h1>
+            </div>
+            <div class="row g-4">
+                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                    <a class="service-item rounded" href="">
+                        <div class="service-icon bg-transparent border rounded p-1">
+                            <div class="w-100 h-100 border rounded d-flex align-items-center justify-content-center">
+                                <i class="fa fa-hotel fa-2x text-primary"></i>
+                            </div>
+                        </div>
+                        <h5 class="mb-3">Approved-only Experiences</h5>
+                        <p class="text-body mb-0">Hand picked unique experiences provided only by approved guides.</p>
+                    </a>
+                </div>
+                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.2s">
+                    <a class="service-item rounded" href="">
+                        <div class="service-icon bg-transparent border rounded p-1">
+                            <div class="w-100 h-100 border rounded d-flex align-items-center justify-content-center">
+                                <i class="fa fa-utensils fa-2x text-primary"></i>
+                            </div>
+                        </div>
+                        <h5 class="mb-3">From locals, with love.</h5>
+                        <p class="text-body mb-0">Never feel like a foreign again, explore the culture like a local.</p>
+                    </a>
+                </div>
+                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
+                    <a class="service-item rounded" href="">
+                        <div class="service-icon bg-transparent border rounded p-1">
+                            <div class="w-100 h-100 border rounded d-flex align-items-center justify-content-center">
+                                <i class="fa fa-spa fa-2x text-primary"></i>
+                            </div>
+                        </div>
+                        <h5 class="mb-3">Live help chat</h5>
+                        <p class="text-body mb-0">Ask any help 24/7/365 from our support on the website.</p>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- BENEFITS FOR BOOKERS End -->
+
+    <!-- BENEFITS FOR GUIDES -->
+    <div class="container-xxl py-5">
+        <div class="container">
+            <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
+                <h6 class="section-title text-center text-primary text-uppercase">App features</h6>
+                <h1 class="mb-5">Explore the benefits <span class="text-primary text-uppercase"> For Tour guides</span></h1>
+            </div>
+            <div class="row g-4">
+                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                    <a class="service-item rounded" href="">
+                        <div class="service-icon bg-transparent border rounded p-1">
+                            <div class="w-100 h-100 border rounded d-flex align-items-center justify-content-center">
+                                <i class="fa fa-hotel fa-2x text-primary"></i>
+                            </div>
+                        </div>
+                        <h5 class="mb-3">Local product to a global audience</h5>
+                        <p class="text-body mb-0">Through our marketplace you can list your local experience to a world-wide audience.</p>
+                    </a>
+                </div>
+                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.2s">
+                    <a class="service-item rounded" href="">
+                        <div class="service-icon bg-transparent border rounded p-1">
+                            <div class="w-100 h-100 border rounded d-flex align-items-center justify-content-center">
+                                <i class="fa fa-utensils fa-2x text-primary"></i>
+                            </div>
+                        </div>
+                        <h5 class="mb-3">Integrated accounting suite</h5>
+                        <p class="text-body mb-0">Track your income and breakdown of your activities through your interactive dashboard.</p>
+                    </a>
+                </div>
+                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
+                    <a class="service-item rounded" href="">
+                        <div class="service-icon bg-transparent border rounded p-1">
+                            <div class="w-100 h-100 border rounded d-flex align-items-center justify-content-center">
+                                <i class="fa fa-spa fa-2x text-primary"></i>
+                            </div>
+                        </div>
+                        <h5 class="mb-3">Automatic weekly payments</h5>
+                        <p class="text-body mb-0">Get paid monthly directly on your bank account.</p>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- BENEFITS FOR GUIDES End -->
+
+{%endblock%}
+

@@ -1,0 +1,158 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load customFilters %}{% comment %} a custom filter that replaces "," with "/" in a string used to pass LocatioField long and alt to url {% endcomment %}
+
+{% block content %}
+
+    <!-- Page Header Start -->
+    <div class="container-fluid page-header mb-5 p-0" style="background-image: url('../static/media/images/pexels-alex-azabache-3722809.jpg');">
+        <div class="container-fluid page-header-inner py-5"> 
+            <div class="container text-center pb-5">
+                <h1 class="display-3 text-white mb-3 animated slideInDown">Experience Details</h1>
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb justify-content-center text-uppercase">
+                        <li class="breadcrumb-item"><a href="{% url "homepage" %}">Home</a></li>
+                        <li class="breadcrumb-item text-white active" aria-current="page">Details</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+    <!-- Page Header End -->
+
+<head>
+    {% comment %} <script src="{% static 'js/jquery.js'%}"></script> {% endcomment %}
+    {{form.media}}
+ </head>
+
+        <div class="container-xxl py-5 px-0 wow zoomIn" data-wow-delay="0.1s">
+            <div class="row g-0">
+                <div class="col-md-6 bg-dark d-flex align-items-center">
+                    <div class="p-5">
+                        <h6 class="section-title text-start text-white text-uppercase mb-3">{{object.tourCategory}}</h6>
+                        <h1 class="text-white mb-4">{{object.tourTitle}}</h1>
+                        <p class="text-white mb-4">                                    
+                            {% for i in object.tourRating|makeList %}
+                            <small class="fa fa-star text-primary"></small>
+                            {% endfor %}</p> 
+                        <p>Seats booked: <span class="text-primary text-uppercase">{{object.tourBookings}} /{{object.tourMaxNumberOfPeople}}</span></p>
+                        {% if user.enduser and object.tourBookings < object.tourMaxNumberOfPeople %}
+                        <button class="btn btn-primary py-md-3 px-md-5 me-3" id="checkout-button">Secure your place!</button>
+                            {% else %}
+                                {% if object.tourBookings == object.tourMaxNumberOfPeople %}
+                                <span style="color:white;">&nbsp; &nbsp; &nbsp;Oops!.. You can't buy this experience. It is fully booked. Please try another <a href="{% url 'experienceList' %}"> Experience! </a></span>
+                                {% elif not user.enduser %}
+                                <span style="color:white;">&nbsp; &nbsp; &nbsp;Oops!.. You can't buy this experience. Please <a href="{% url 'signupUser' %}"> SIGN UP! </a> first.</span>
+                                {% endif %}
+                            {% endif %}
+                    </div>
+                </div>
+                <div class="col-md-6">
+                            <img src="{{object.tourImage.url}}" class="card-img-top" alt="..."> 
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- About Start -->
+        <div class="container-xxl py-5">
+            <div class="container">
+                <div class="row g-5 align-items-center">
+                    <div class="col-lg-12">
+                        <h6 class="section-title text-start text-primary text-uppercase">About The Experience</h6>
+                        <h1 class="mb-4"><span class="text-primary text-uppercase">Experience Features</span></h1>
+                        <p class="mb-4">{{object.tourDescription}}</p>
+                        <div class="row g-3 pb-4">
+                            <div class="col-sm-4 wow fadeIn" data-wow-delay="0.1s">
+                                <div class="border rounded p-1">
+                                    <div class="border rounded text-center p-4">
+                                        <i class="bi bi-cash fa-2x text-primary mb-2"></i>
+                                        <h2 class="mb-1" data-toggle="counter-up">${{object.tourPrice|floatformat:2}}</h2>
+                                        <p class="mb-0">Price</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-4 wow fadeIn" data-wow-delay="0.3s">
+                                <div class="border rounded p-1">
+                                    <div class="border rounded text-center p-4">
+                                        <i class="bi bi-geo-alt-fill fa-2x text-primary mb-2"></i>
+                                        <h2 class="mb-1" data-toggle="counter-up">{{object.tourCity}}</h2>
+                                        <p class="mb-0">Location</p>
+                                    </div>
+                                </div> 
+                            </div>
+                            <div class="col-sm-4 wow fadeIn" data-wow-delay="0.5s">
+                                <div class="border rounded p-1">
+                                    <div class="border rounded text-center p-4">
+                                        <i class="bi bi-calendar-date fa-2x text-primary mb-2"></i>
+                                        <h2 class="mb-1" data-toggle="counter-up">{{object.tourAvailableDate}}</h2>
+                                        <p class="mb-0">Date</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <center>
+                                <div>
+
+                                    <iframe style="width: 500px; height: 400px" frameborder="0" src="https://www.bing.com/maps/embed?h=400&w=500&cp={{object.tourLocation|map|safe}}&lvl=11&typ=s&sty=r&src=SHELL&FORM=MBEDV8" scrolling="no">
+                                
+                                    </iframe>
+                                
+                                    <div style="white-space: nowrap; text-align: center; width: auto; padding: 6px 0;">
+                                
+                                        <a id="largeMapLink" target="_blank" href="https://www.bing.com/maps?cp={{object.tourLocation|map|safe}}&amp;sty=r&amp;lvl=11&amp;FORM=MBEDLD">Προβολή μεγαλύτερου χάρτη</a> &nbsp; | &nbsp;
+                                
+                                        <a id="dirMapLink" target="_blank" href="https://www.bing.com/maps/directions?cp={{object.tourLocation|map|safe}}&amp;sty=r&amp;lvl=11&amp;rtp=~pos.37.99183365313853_23.655624389648438____&amp;FORM=MBEDLD">Λήψη οδηγιών</a>
+                                
+                                    </div>
+                                
+                                </div> 
+                            </center>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <!-- About End -->
+    </div>
+</div>
+
+
+<!-- Add JavaScript Here-->
+<script src="https://js.stripe.com/v3/"></script>
+<script type="text/javascript">
+    // Create an instance of the Stripe object with your publishable API key
+    var stripe = Stripe('{{ stripe_publishable_key }}');
+    var checkoutButton = document.getElementById('checkout-button');
+
+    checkoutButton.addEventListener('click', function () {
+        var email = "{{request.user.email}}"
+
+        // Create a new Checkout Session using the server-side endpoint you
+        fetch("{% url 'api_checkout_session' id=object.id %}", {
+            method: 'POST',
+            body: JSON.stringify(
+                { email: email }
+            )
+        })
+            .then(function (response) {
+                return response.json();
+            })
+            .then(function (session) {
+                return stripe.redirectToCheckout({ sessionId: session.sessionId });
+            })
+            .then(function (result) {
+                // If `redirectToCheckout` fails due to a browser or network
+                // error, you should display the localized error message to your
+                // customer using `error.message`.
+                if (result.error) {
+                    alert(result.error.message);
+                }
+            })
+            .catch(function (error) {
+                console.error('Error:', error);
+            });
+    });
+</script>
+{% endblock content %}

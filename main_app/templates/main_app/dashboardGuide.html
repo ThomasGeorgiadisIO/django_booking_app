@@ -1,0 +1,94 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} guide dashboard {% endblock %}
+
+{% block content %}
+
+<div class="container-xxl py-5">
+    <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
+        <h6 class="section-title text-center text-dark ">{{ request.user.username }} <span class="text-primary text-uppercase">| dashboard</span></h6>
+    </div>
+    <br>
+    {%if user.tourguide.isGuideApproved == 'Approved' %}
+    <div class="row g-4">
+        <div class="col-lg-6">
+            <br><br>
+            <p><a href="{% url 'editPass' %}" class="text-primary text-uppercase">change password</a></p>
+            <hr>
+            <p><a href="{% url 'editGuide' %}" class="text-primary text-uppercase">edit my profile</a></p>
+            <hr>
+            <p><a href="{% url 'experienceCreate' %}" class="text-primary text-uppercase">create new activity</a></p>
+            <hr>
+            <p><a href="{% url 'experienceManage' %}" class="text-primary text-uppercase">manage my tours</a></p>
+            <br><br>
+            <div class="row g-3 pb-4">
+                <div class="col-sm-4 wow fadeIn" data-wow-delay="0.1s">
+                    <div class="border rounded p-1">
+                        <div class="border rounded text-center p-4">
+                            <i class="fa fa-suitcase fa-2x text-primary mb-2"></i>
+                            <h2 class="mb-1" data-toggle="counter-up">{{num_of_tours}}</h2>
+                            <p class="mb-0">Tour experience</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-4 wow fadeIn" data-wow-delay="0.3s">
+                    <div class="border rounded p-1">
+                        <div class="border rounded text-center p-4">
+                            <i class="fa fa-users fa-2x text-primary mb-2"></i>
+                            <h2 class="mb-1" data-toggle="counter-up">{{num_of_bookings}}</h2>
+                            <p class="mb-0">Bookings</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-4 wow fadeIn" data-wow-delay="0.5s">
+                    <div class="border rounded p-1">
+                        <div class="border rounded text-center p-4">
+                            <i class="fa fa-credit-card fa-2x text-primary mb-2"></i>
+                            <h2 class="mb-1" data-toggle="counter-up">{{num_of_income|floatformat:2}}</h2>
+                            <p class="mb-0">Income</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <canvas id="pieChart"></canvas>
+            <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
+            <script>
+                var config = {
+                    type: 'pie',
+                    data: {
+                        datasets: [{
+                            data: {{ data|safe }},
+                            backgroundColor: [
+                            '#ffa500', '#e59400', '#cc8400', '#b27300', '#996300'
+                            ],
+                            label: 'Population'
+                        }],
+                        labels: {{ labels|safe }}
+                        },
+                        options: {
+                        responsive: true
+                        }
+                    };
+                    window.onload = function() {
+                        var ctx = document.getElementById('pieChart').getContext('2d');
+                        window.myPie = new Chart(ctx, config);
+                };
+            </script>
+        </div>
+    </div>
+    <br>
+    
+    {% else %}
+    <div class="jumbotron text-center mt-5">
+        <h1 class="text-primary">Oops!.. Access Denied</h1>
+        <p>You have not been approved yet. Please contact us at support@e-tours.gr 
+            <a href="{% url 'contactUs' %}"> | Contact Us</a>.
+        </p>
+    </div>
+    {% endif %}
+</div>
+
+{% endblock content %}

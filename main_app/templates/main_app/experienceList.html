@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load customFilters %}
+
+{% block content %}
+
+    <!-- Page Header Start -->
+    <div class="container-fluid page-header mb-5 p-0" style="background-image: url('../static/media/images/pexels-alex-azabache-3722809.jpg');">
+        <div class="container-fluid page-header-inner py-5"> 
+            <div class="container text-center pb-5">
+                <h1 class="display-3 text-white mb-3 animated slideInDown">Experiences</h1>
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb justify-content-center text-uppercase">
+                        <li class="breadcrumb-item"><a href="{% url "homepage" %}">Home</a></li>
+                        <li class="breadcrumb-item text-white active" aria-current="page">Experiences</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+    <!-- Page Header End -->
+
+
+    <div class="container-xxl py-5">
+        <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
+            <h6 class="section-title text-center text-primary text-uppercase">Our Experiences</h6>
+            <h1 class="mb-5">Explore Our <span class="text-primary text-uppercase">Unique Experiences</span></h1>
+        </div>
+        {% include 'main_app/sortbyNavbar.html' %}
+        <div class="row g-4">
+            {% if allToursList %}
+            {% for tour in allToursList %}
+            <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                <div class="room-item shadow rounded overflow-hidden">
+                    <div class="position-relative">
+                        <div class="imageCrop">
+                        <img class="img-fluid" src="{{tour.tourImage.url}}" alt="">
+                        </div>
+                        <small class="position-absolute start-0 top-100 translate-middle-y bg-primary text-white rounded py-1 px-3 ms-4">$ {{tour.tourPrice|floatformat:2}} /Per Person</small>
+                        {% if user.enduser %}
+                        <a href="{% url 'wishListAdd' id=tour.id %}" style="margin-left:-20px;" class="fa fa-heart position-absolute start-100 top-0 translate-middle-x bg-primary text-white rounded py-1 px-1 my-2"></a>
+                        {% endif %}
+                    </div>
+                    <div class="p-4 mt-2">
+                        <div class="d-flex justify-content-between mb-3">
+                            <h5 class="mb-0">{{tour.tourTitle}}</h5>
+                            <div class="ps-2">
+                            {% if tour.tourRating == 0 %}
+                                <p class="text-primary"></p>
+                            {%else%}
+                                {% for i in tour.tourRating|makeList %}
+                                <small class="fa fa-star text-primary"></small>
+                                {% endfor %}
+                            {%endif%}
+                            </div>
+                        </div>
+                        <div class="d-flex mb-3">
+                            <small class="border-end me-3 pe-3"><i class="fa fa-users text-primary me-2"></i>{{tour.tourMaxNumberOfPeople}}</small>
+                            <small class="border-end me-3 pe-3"><i class="fa fa-hourglass-start text-primary me-2"></i>{{tour.tourDuration}}</small>
+                            <small><i class="fa fa-eye text-primary me-2"></i>{{tour.tourCategory}}</small>
+                        </div>
+                        <p class="text-body mb-3"> <b> Tour by: </b> {{tour.tourGuide.username}}</p>
+                        <div class="d-flex justify-content-between position-relative">
+                            {% if user.enduser %}
+                            <a href="{% url 'experienceDetails' id=tour.id %}" class="btn btn-sm btn-primary rounded py-2 px-4">View Detail</a>
+                            <a href="{% url 'experienceDetails' id=tour.id %}" class="btn btn-sm btn-dark rounded py-2 px-4">Book Now</a>
+                            {% else %}
+                            <a href="{% url 'experienceDetails' id=tour.id %}" class="btn btn-sm btn-primary rounded py-2 px-4">View Detail</a>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {%endfor%}
+            {% else %}
+            <div class="alert alert-info text-center mt-5">
+                The experience list is empty.
+            </div>
+            {% endif %}
+        </div>
+    </div>
+
+{%endblock%}

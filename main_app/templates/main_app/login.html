@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% load account socialaccount %}
+{% load i18n %}
+
+{% block title %} Login {% endblock %}
+
+{% block content %}
+
+{% get_providers as socialaccount_providers %}
+
+<div class="container-xxl py-5 w-50 p-3">
+    <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
+        <h6 class="section-title text-center text-primary text-uppercase">Login</h6>
+    </div>
+    <br>
+    <form method='post'>
+        {% csrf_token %}
+        <div class="form-group">
+            {{form|crispy}}
+            {% if messages %}
+            <div class="messages text-primary">
+                {% for message in messages %}
+                <small {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</small>
+                {% endfor %}
+            </div>
+            {% endif %}
+            <br>
+            <button type="submit" class="btn btn-primary"> login </button>
+            <button type="reset" class="btn btn-secondary"> reset </button>
+            {% if socialaccount_providers %}
+            <div class="btn btn-primary socialaccount_providers float-end" id='providers'>
+                {% include "socialaccount/snippets/provider_list.html" with process="login" %}
+            </div>
+            {% endif %}
+        </div>
+    </form>
+</div>
+{% endblock %}
