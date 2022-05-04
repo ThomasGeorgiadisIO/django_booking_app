@@ -9,7 +9,7 @@
 
 ![Alt text](./screenshots/auto_location.png?raw=true "Title")
 
-## Serving it dynamicly to the end user in produst details.
+## Serving it dynamicly to the end user in product details.
 
 ![Alt text](./screenshots/detail2.png?raw=true "Title")
 
